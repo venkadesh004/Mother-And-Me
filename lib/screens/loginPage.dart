@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:mother_and_me/screens/homeScreen.dart';
 import 'package:mother_and_me/screens/registerationPage.dart';
 import 'package:mother_and_me/screens/splashScreen.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:mother_and_me/components/inputComponent.dart';
 import 'package:mother_and_me/components/loginRegisterLayout.dart';
+
+import '../api.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -40,6 +42,10 @@ class LoginDetails extends StatefulWidget {
 }
 
 class _LoginDetailsState extends State<LoginDetails> {
+
+  TextEditingController _email = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,7 +64,24 @@ class _LoginDetailsState extends State<LoginDetails> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 50),
-            child: const InputForLogin(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InputComponent(
+                    inputIcon: Icons.email,
+                    inputHintText: "Enter your Email Address",
+                    inputTextEditingController: _email
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 40),
+                  child: InputComponent(
+                      inputIcon: Icons.lock,
+                      inputHintText: "Enter your Password",
+                      inputTextEditingController: _password
+                  ),
+                ),
+              ],
+            ),
           ),
           Container(
             height: 50,
@@ -74,7 +97,8 @@ class _LoginDetailsState extends State<LoginDetails> {
                     )
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                  print(_email.text+" "+_password.text);
+                  loginRequest(context, _email.text, _password.text);
                 },
                 child: Text(
                   "Login",
@@ -93,14 +117,12 @@ class _LoginDetailsState extends State<LoginDetails> {
               children: [
                 Text(
                     "New to the app? ",
-                    style: GoogleFonts.itim(
-                        fontSize: 20
-                    )
+                    style: TextStyle(fontSize: 20)
                 ),
                 InkWell(
                   child: Text(
                     "Register",
-                    style: GoogleFonts.itim(
+                    style: TextStyle(
                         color: Color.fromRGBO(7,136,254,1),
                         fontSize: 20
                     ),
@@ -109,51 +131,13 @@ class _LoginDetailsState extends State<LoginDetails> {
                 ),
                 Text(
                   " now.",
-                  style: GoogleFonts.itim(
+                  style: TextStyle(
                       fontSize: 20
                   ),
                 )
               ],
             ),
           )
-        ],
-      ),
-    );
-  }
-}
-
-
-class InputForLogin extends StatefulWidget {
-  const InputForLogin({Key? key}) : super(key: key);
-
-  @override
-  State<InputForLogin> createState() => _InputForLoginState();
-}
-
-class _InputForLoginState extends State<InputForLogin> {
-
-  TextEditingController _email = new TextEditingController();
-  TextEditingController _hosID = new TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          InputComponent(
-              inputIcon: Icons.email,
-              inputHintText: "Enter your Email Address",
-              inputTextEditingController: _email
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 40),
-            child: InputComponent(
-                inputIcon: Icons.favorite,
-                inputHintText: "Enter your Hopital ID",
-                inputTextEditingController: _hosID
-            ),
-          ),
         ],
       ),
     );

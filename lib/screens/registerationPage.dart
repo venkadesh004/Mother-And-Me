@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mother_and_me/api.dart';
 import 'package:mother_and_me/components/constants.dart';
 import 'package:mother_and_me/components/loginRegisterLayout.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:mother_and_me/components/inputComponent.dart';
 import 'package:mother_and_me/screens/homeScreen.dart';
 import 'package:mother_and_me/screens/loginPage.dart';
@@ -47,6 +48,8 @@ class _RegisterationDetailsState extends State<RegisterationDetails> {
   TextEditingController _hosName = new TextEditingController();
   TextEditingController _fPrim = new TextEditingController();
   TextEditingController _phone = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
+  TextEditingController _username = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +69,7 @@ class _RegisterationDetailsState extends State<RegisterationDetails> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 50),
-            child: InputForRegisteration(email: _email, hosName: _hosName, fPrim: _fPrim, phone: _phone,),
+            child: InputForRegisteration(email: _email, hosName: _hosName, fPrim: _fPrim, phone: _phone, password: _password, username: _username),
           ),
           Container(
             height: 50,
@@ -81,20 +84,8 @@ class _RegisterationDetailsState extends State<RegisterationDetails> {
                         )
                     )
                 ),
-                onPressed: () {
-                  if (_email.text != null) {
-                    email = _email.text;
-                  }
-                  if (_hosName.text != null) {
-                    hos = _hosName.text;
-                  }
-                  if (_fPrim.text != null) {
-                    monthOfPrim = int.parse(_fPrim.text);
-                  }
-                  if (_phone.text != null) {
-                    phone = _phone.text;
-                  }
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                onPressed: () async {
+                  await signupRequest(context, _email.text, _username.text, _hosName.text, _fPrim.text, _phone.text, _password.text);
                 },
                 child: Text(
                   "Register",
@@ -113,14 +104,14 @@ class _RegisterationDetailsState extends State<RegisterationDetails> {
               children: [
                 Text(
                     "Already a User? ",
-                    style: GoogleFonts.itim(
+                    style: TextStyle(
                         fontSize: 20
                     )
                 ),
                 InkWell(
                   child: Text(
                     "Login",
-                    style: GoogleFonts.itim(
+                    style: TextStyle(
                         color: Color.fromRGBO(7,136,254,1),
                         fontSize: 20
                     ),
@@ -129,7 +120,7 @@ class _RegisterationDetailsState extends State<RegisterationDetails> {
                 ),
                 Text(
                   " now.",
-                  style: GoogleFonts.itim(
+                  style: TextStyle(
                       fontSize: 20
                   ),
                 )
@@ -147,13 +138,17 @@ class InputForRegisteration extends StatefulWidget {
     required this.email,
     required this.hosName,
     required this.fPrim,
-    required this.phone
+    required this.phone,
+    required this.password,
+    required this.username
   }) : super(key: key);
 
   final email;
   final hosName;
   final fPrim;
   final phone;
+  final password;
+  final username;
 
   @override
   State<InputForRegisteration> createState() => _InputForRegisterationState();
@@ -176,8 +171,8 @@ class _InputForRegisterationState extends State<InputForRegisteration> {
             margin: const EdgeInsets.only(top: 40),
             child: InputComponent(
                 inputIcon: Icons.local_hospital,
-                inputHintText: "Enter your Hopital name",
-                inputTextEditingController: widget.hosName
+                inputHintText: "Enter your Name",
+                inputTextEditingController: widget.username
             ),
           ),
           Container(
@@ -194,6 +189,22 @@ class _InputForRegisterationState extends State<InputForRegisteration> {
                 inputIcon: Icons.phone,
                 inputHintText: "Enter your Phone Number",
                 inputTextEditingController: widget.phone
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 40),
+            child: InputComponent(
+                inputIcon: Icons.lock,
+                inputHintText: "Enter your Password",
+                inputTextEditingController: widget.password
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 40),
+            child: InputComponent(
+                inputIcon: Icons.lock,
+                inputHintText: "Enter your Hospital Name",
+                inputTextEditingController: widget.hosName
             ),
           ),
         ],

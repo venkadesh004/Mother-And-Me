@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:mother_and_me/components/loginRegisterLayout.dart';
 import 'package:mother_and_me/components/constants.dart';
 import 'package:mother_and_me/screens/homeScreen.dart';
@@ -50,7 +50,6 @@ class _UserDetailsState extends State<UserDetails> {
             UserSubBox(userQues: "Phone", userSol: phone),
             UserSubBox(userQues: "Present Primetes", userSol: presentPrim.toString()),
             UserSubBox(userQues: "Predicted Delivery", userSol: months[monthOfDeliver-1]),
-            UserSubBox(userQues: "Hospital ID", userSol: hosID),
           ],
         ),
       ),
@@ -72,7 +71,7 @@ class _UserSubHeadingState extends State<UserSubHeading> {
   Widget build(BuildContext context) {
     return Text(
       widget.userQuestion,
-      style: GoogleFonts.itim(
+      style: TextStyle(
         fontSize: 25
       ),
     );
@@ -91,11 +90,14 @@ class UserSubHeadingSol extends StatefulWidget {
 class _UserSubHeadingSolState extends State<UserSubHeadingSol> {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      widget.userSol,
-      style: GoogleFonts.itim(
-        fontSize: 20,
-        color: Colors.grey
+    return Flexible(
+      child: Text(
+        widget.userSol,
+        textAlign: TextAlign.right,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.grey
+        ),
       ),
     );
   }

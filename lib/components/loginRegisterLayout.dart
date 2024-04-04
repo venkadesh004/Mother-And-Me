@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 class LoginRegisterLayout extends StatefulWidget {
   const LoginRegisterLayout({Key? key,
@@ -24,7 +24,6 @@ class _LoginRegisterLayoutState extends State<LoginRegisterLayout> {
           margin: const EdgeInsets.only(top: 20),
           child: Text(
             "Mother And Me",
-            style: GoogleFonts.itim(),
           ),
         ),
         centerTitle: true,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 
 class InputComponent extends StatefulWidget {
   const InputComponent({Key? key,
@@ -34,7 +34,6 @@ class _InputComponentState extends State<InputComponent> {
               color: Colors.grey,
             ),
             hintText: widget.inputHintText,
-            hintStyle: GoogleFonts.itim(),
             border: InputBorder.none
         ),
       ),

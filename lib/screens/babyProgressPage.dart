@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:mother_and_me/components/loginRegisterLayout.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:mother_and_me/components/constants.dart';
 import 'package:mother_and_me/screens/userProfile.dart';
 
@@ -72,7 +72,6 @@ class _BabyProgressDetailsState extends State<BabyProgressDetails> {
             padding: const EdgeInsets.all(20),
             child: Text(
               widget.imageText,
-              style: GoogleFonts.itim(),
               textAlign: TextAlign.center,
             )
           ),
@@ -80,7 +79,7 @@ class _BabyProgressDetailsState extends State<BabyProgressDetails> {
             margin: const EdgeInsets.only(top: 20),
             child: Text(
               "Predicted Month Of Delivery: ${months[monthOfDeliver-1]}",
-              style: GoogleFonts.itim(
+              style: TextStyle(
                 fontSize: 17
               ),
             ),

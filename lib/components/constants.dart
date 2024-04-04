@@ -115,4 +115,3 @@ var motherName = "Vaishnavi";
 var hos = "TCE";
 var email = "sreevenkadesh004@gmail.com";
 var phone = "8610475929";
-var hosID = "TCE001";
