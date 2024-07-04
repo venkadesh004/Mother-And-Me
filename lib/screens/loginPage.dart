@@ -98,7 +98,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                 ),
                 onPressed: () {
                   print(_email.text+" "+_password.text);
-                  loginRequest(context, _email.text, _password.text);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: Text(
                   "Login",
