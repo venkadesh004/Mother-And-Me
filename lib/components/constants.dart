@@ -111,7 +111,7 @@ int presentPrimFinder() {
   }
 }
 
-var motherName = "Vaishnavi";
-var hos = "TCE";
-var email = "sreevenkadesh004@gmail.com";
-var phone = "8610475929";
+var motherName = "Sneha";
+var hos = "Apollo";
+var email = "sneha@gmail.com";
+var phone = "1234567890";
